@@ -1,0 +1,172 @@
+Oscar Alessandro Carranza Orellana 
+1890-22-5573 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Online</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    .cart-icon {
+      position: relative;
+    }
+    .cart-icon .badge {
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+
+<body class="bg-dark text-white">
+    </body>
+
+
+
+  <!-- ENCABEZADO CON CARRUSEL E ÍCONO -->
+  <div class="container my-3">
+    <div class="bg-danger border rounded p-3 shadow">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="m-0">VENTA DE ARTÍCULOS ONLINE</h2>
+        <div class="cart-icon">
+          <i class="bi bi-cart3 fs-3"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">10</span>
+        </div>
+      </div>
+
+      <!-- CARRUSEL -->
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner rounded">
+          <div class="carousel-item active">
+            <img src="https://m.media-amazon.com/images/I/71QxSyzk3qL.RM_SX1200_.jpg" class="d-block w-100 img-fluid" alt="Imagen 1">
+          </div>
+          <div class="carousel-item">
+            <img src="https://m.media-amazon.com/images/I/71arL101nwL.RM_SX1200_.jpg" class="d-block w-100 img-fluid" alt="Imagen 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCWsgOXdPH-qlcovf_ubh6DHaikEfjPe7VLg&s" class="d-block w-100 img-fluid" alt="Imagen 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN PRINCIPAL -->
+  <div class="container mb-5">
+    <div class="row">
+
+      <!-- CATEGORÍAS -->
+      <aside class="col-sm-3 mb-4">
+        <div class="list-group shadow">
+          <h5 class="list-group-item bg-success text-danger">Categorías</h5>
+          <a href="#" class="list-group-item">Categoría 1</a>
+          <a href="#" class="list-group-item">Categoría 2</a>
+          <a href="#" class="list-group-item">Categoría 3</a>
+          <a href="#" class="list-group-item">Categoría 4</a>
+        </div>
+      </aside>
+
+      <!-- PRODUCTOS -->
+      <section class="col-sm-9">
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+
+          <!-- Repetimos 6 productos -->
+          <!-- Producto -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://galeriaderieles.com/cdn/shop/files/IMG_1802_300x300.jpg?v=1730832237" class="card-img-top img-fluid" alt="Producto 1">
+              <div class="card-body">
+                <h6 class="card-title">LOUIS VUITTON</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Puedes copiar y pegar el bloque anterior para los otros productos -->
+          <!-- Producto 2 -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://www.sartex.com.mx/cdn/shop/products/G001AM001.jpg?v=1670956155" class="card-img-top img-fluid" alt="Producto 2">
+              <div class="card-body">
+                <h6 class="card-title">GORRA WINNER</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 3 -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://img.pacifiko.com/PROD/resize/1/500x500/OTliNTRiMm.jpg" class="card-img-top img-fluid" alt="Producto 3">
+              <div class="card-body">
+                <h6 class="card-title">CALCETINES NIKE</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 4 -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://cdn-images.farfetch-contents.com/22/30/72/41/22307241_53173828_600.jpg" class="card-img-top img-fluid" alt="Producto 4">
+              <div class="card-body">
+                <h6 class="card-title">BOLSO GUCCI</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 5 -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://i0.wp.com/amore.com.gt/wp-content/uploads/2023/12/1-4.png?fit=600%2C600&ssl=1" class="card-img-top img-fluid" alt="Producto 5">
+              <div class="card-body">
+                <h6 class="card-title">FRAGANCIA PRADA</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Producto 6 -->
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm">
+              <img src="https://walmartgt.vtexassets.com/arquivos/ids/230204/Mochila-Totto-Multicolor-G-2-47273.jpg?v=637752549932900000" class="card-img-top img-fluid" alt="Producto 6">
+              <div class="card-body">
+                <h6 class="card-title">MOCHILA TOTTO</h6>
+                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-success text-black text-center py-3">
+     Oscar Alessandro Carranza Orellana  - 1890-22-5573
+  </footer>
+
+  <!-- Bootstrap JS -->
+
+
+
+  principales cosas que use 
+
+  Estructura semántica con HTML5
+ Estilización totalmente basada en **Bootstrap 5.3** (no se usó CSS externo)
+ Diseño responsive adaptado a móviles y escritorio
+ Catálogo de productos con tarjetas visuales
+ Carrusel de imágenes en el encabezado
+ Menú lateral con categorías
+ Footer con nombre del autor
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
