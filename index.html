@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +11,7 @@
     .cart-icon {
       position: relative;
     }
+
     .cart-icon .badge {
       font-size: 0.75rem;
     }
@@ -17,18 +19,15 @@
 </head>
 
 <body class="bg-dark text-white">
-    </body>
-
-
 
   <!-- ENCABEZADO CON CARRUSEL E ÍCONO -->
   <div class="container my-3">
     <div class="bg-danger border rounded p-3 shadow">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="m-0">VENTA DE ARTÍCULOS ONLINE</h2>
+        <h2 class="m-0">VENTAS DE ARTÍCULOS ONLINE</h2>
         <div class="cart-icon">
           <i class="bi bi-cart3 fs-3"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">10</span>
+          <span id="contadorCarrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">0</span>
         </div>
       </div>
 
@@ -70,78 +69,10 @@
         </div>
       </aside>
 
-      <!-- PRODUCTOS -->
+      <!-- PRODUCTOS DINÁMICOS -->
       <section class="col-sm-9">
-        <div class="row row-cols-1 row-cols-md-3 g-3">
-
-          <!-- Repetimos 6 productos -->
-          <!-- Producto -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://galeriaderieles.com/cdn/shop/files/IMG_1802_300x300.jpg?v=1730832237" class="card-img-top img-fluid" alt="Producto 1">
-              <div class="card-body">
-                <h6 class="card-title">LOUIS VUITTON</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Puedes copiar y pegar el bloque anterior para los otros productos -->
-          <!-- Producto 2 -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://www.sartex.com.mx/cdn/shop/products/G001AM001.jpg?v=1670956155" class="card-img-top img-fluid" alt="Producto 2">
-              <div class="card-body">
-                <h6 class="card-title">GORRA WINNER</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 3 -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://img.pacifiko.com/PROD/resize/1/500x500/OTliNTRiMm.jpg" class="card-img-top img-fluid" alt="Producto 3">
-              <div class="card-body">
-                <h6 class="card-title">CALCETINES NIKE</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 4 -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://cdn-images.farfetch-contents.com/22/30/72/41/22307241_53173828_600.jpg" class="card-img-top img-fluid" alt="Producto 4">
-              <div class="card-body">
-                <h6 class="card-title">BOLSO GUCCI</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 5 -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://i0.wp.com/amore.com.gt/wp-content/uploads/2023/12/1-4.png?fit=600%2C600&ssl=1" class="card-img-top img-fluid" alt="Producto 5">
-              <div class="card-body">
-                <h6 class="card-title">FRAGANCIA PRADA</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 6 -->
-          <div class="col">
-            <div class="card h-100 text-center shadow-sm">
-              <img src="https://walmartgt.vtexassets.com/arquivos/ids/230204/Mochila-Totto-Multicolor-G-2-47273.jpg?v=637752549932900000" class="card-img-top img-fluid" alt="Producto 6">
-              <div class="card-body">
-                <h6 class="card-title">MOCHILA TOTTO</h6>
-                <button class="btn btn-outline-success btn-sm">Agregar al carrito</button>
-              </div>
-            </div>
-          </div>
-
+        <div class="row" id="contenedor-productos">
+          <!-- productos se cargarán aquí -->
         </div>
       </section>
     </div>
@@ -149,10 +80,66 @@
 
   <!-- FOOTER -->
   <footer class="bg-success text-black text-center py-3">
-     Oscar Alessandro Carranza Orellana  - 1890-22-5573
+    Oscar Alessandro Carranza Orellana - 1890-22-5573
   </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script para renderizar productos desde API -->
+  <script>
+    const url = "https://backcvbgtmdesa.azurewebsites.net/api/productos";
+    const contenedor = document.getElementById("contenedor-productos");
+    const contadorCarrito = document.getElementById("contadorCarrito");
+    let carrito = 0;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(productos => {
+        productos.forEach(producto => {
+          const col = document.createElement("div");
+          col.className = "col-sm-12 col-md-4 mb-4";
+
+          let precioHTML = "";
+          if (producto.EnOferta && producto.PrecioOferta) {
+            precioHTML = `
+              <span class="text-danger fw-bold">$${parseFloat(producto.PrecioOferta).toFixed(2)}</span>
+              <small class="text-muted text-decoration-line-through">$${parseFloat(producto.Precio).toFixed(2)}</small>
+            `;
+          } else {
+            precioHTML = `<span class="fw-bold">$${parseFloat(producto.Precio).toFixed(2)}</span>`;
+          }
+
+          col.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <img src="${producto.Imagen}" class="card-img-top img-fluid" alt="${producto.Nombre}">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${producto.Nombre}</h5>
+                <p class="card-text">${producto.Descripcion}</p>
+                <p>${precioHTML}</p>
+                <a href="#" class="btn btn-primary mt-auto agregarCarrito">Agregar al carrito</a>
+              </div>
+            </div>
+          `;
+
+          col.querySelector(".agregarCarrito").addEventListener("click", e => {
+            e.preventDefault();
+            carrito++;
+            contadorCarrito.textContent = carrito;
+          });
+
+          contenedor.appendChild(col);
+        });
+      })
+      .catch(error => {
+        console.error("Error al cargar productos:", error);
+        contenedor.innerHTML = `
+          <div class="alert alert-danger">
+            No se pudieron cargar los productos. Intenta más tarde.
+          </div>`;
+      });
+  </script>
+
 </body>
+
 </html>
